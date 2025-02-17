@@ -1,0 +1,201 @@
+# Press ⌃R to execute it or replace it with your code.
+# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+
+Master Python Design Patterns: CodeTekTech on YouTube
+https://www.youtube.com/watch?v=mWaZD8uztT8
+
+***
+Gang of Four design patterns
+***
+1. Creational
+    a. builder: When piecewise object creation construction is complicated, provide an API
+                for doing succinctly.
+                -- A builder is a separate component for building an object.
+                -- Can either give builder and initializer or return it via a static function.
+                -- To make builder fluent, return self.
+                -- Different facets of an object can be built with different builders working
+                    in tandem via a base class.
+    b. factories
+        i. factory-method: An alternative to initializer
+        i(a). Factory: once you have too many factory methods, it may make sense to create
+                factory. If desired, can be implemented as an inner class.
+        ii. abstract-factory: If you have hierarchy of types, then you can have a corresponding
+                hierarchy of factories.
+                (Note: https://www.youtube.com/watch?v=Uwci2zPgiLY does a better job)
+    c. prototype
+        - When it's easier to copy and existing object to fully initialize a new one.
+        * Complicated objects are not designed from scratch.
+        * An existing design is a Prototype.
+        * We make a copy (clone) of the prototype and customize (deep copy).
+
+        - A partially or fully initialized object that you copy(clone) and make use of.
+    d. singleton
+        - Instantiated only once
+2. Structural
+    a. adapter
+        -- Getting the interface you want from the interface you have.
+        -- A construct which adapts an existing interface X to conform to the required interface Y.
+
+    b. bridge
+        -- Connecting components together through abstractions.
+        -- Prevents a "Cartesian product" complexity explosion.
+        -- A mechanism that decouples an interface (hierarchy) from an implementation (hierarchy).
+        -- Both can exist as hierarchies
+        -- A stronger form of encapsulation
+
+    c. composite
+        -- Treating individual and aggregate objects uniformly
+        -- Composition allows us to make compound objects
+        -- A mechanism for treating individual(scalar) objects and composition of objects
+           in a uniform manner.
+        -- Objects can use other objects via inheritance/composition.
+        -- Some composed and singular objects need similar/identical behaviors.
+        -- Composite design pattern lets us treat both types (scalar and composite)
+           of objects uniformly.
+
+    d. decorator
+        -- Adding behavior without altering the class itself.
+        -- Want to augment object with additional functionality.
+        -- Do not want to rewrite or alter existing code (OCP).
+        -- Want to keep new functionality separate (SRP).
+        -- Need to be able to interact with existing structures.
+        -- Two options:
+            * Inherit from required object (if possible)
+            * Build a decorator, which simply references the decorated object(s). A decorator keeps
+              keeps the reference to the decorated object(s).
+        -- Facilitates the addition of behaviors to individual objects without
+           inheriting from them.
+        -- Adds utility attributes and methods to augment the object's features
+        -- May or may not forward calls to the underlying object.
+        -- Proxying of underlying calls can be done dynamically.
+        -- Python's functional decorators wrap functions; no direct relation to the
+           GoF Decorator pattern.
+
+    e. facade
+        -- Exposing several components through a single interface.
+        -- Provides a simple, easy to understand user interface over a large and
+           sophisticated body of code.
+        -- Build a facade to provide a simplified API over a set of classes
+        -- May wish to (optionally) expose internals through the facade
+        -- May allow user to 'escalate' to use more complex APIs if they need to.
+
+    f. flyweight
+        -- Space Optimization
+        -- Tries to save memory -- avaoid redundancy when storing data
+        -- A space optimization technic that lets us use less memory by storing
+            externally the data associated with similar objects.
+        -- Store common data externally
+        -- Specify an index of a reference into the external data store
+        -- Define the idea of 'ranges' on homogeneous collections and store
+            data related to those ranges
+
+    g. proxy
+        -- Same interface, entirely different behavior
+        -- Commnunication Proxy, Logging Proxy, Virtual Proxy, Guarding Proxy ...
+        -- A class that functions as an interface to a particular resource. That resource
+            may be remote, expensive to construct, or may require logging to some other
+            added functionality.
+        -- vs. Decorator:
+            - Proxy provides an identical interface; decorator provides an enhanced interface.
+            - Decorator typically aggregates (or has reference to) what it is decorating; proxy
+                does not have to.
+            -- Proxy might not even be working with a materialized object (Lazy).
+        -- A proxy has the same interface as the underlying object.
+        -- To create a proxy, simply replicate the existing interface of an object
+        -- Add relevant functionality to the redefined member functions.
+        -- Different proxies have completely different behaviors.
+
+3. Behavioral
+    a. chain-of-responsibility
+        -- Sequence of handler processing an event one after another.
+        -- A chain of components who all get a chance to process a command or a query, optionally having
+            default processing implementation and an ability to terminate the processing chain.
+        -- CQS: Command Query Separator. Having separate means of sending commands and query to e.g.,
+            direct field access.
+            - Command = askging for and action or change (e.g., set attack value to 2)
+            - Query = asking for information (e.g., give me your attack value)
+
+
+    b. command
+        -- Ordinary statements are perishable
+            - Cannot undo member assignment
+            - Cannot directly serialize a sequence of actions (calls)
+        -- We want an object that represents an operation
+            - Person change its age to value 22
+            - Car should do explode()
+        -- An object which represents an instruction to perform an particular action.
+        -- It contains all the information necessary for the action to be taken.
+        -- Encapsulate all details on an operation in a separate object
+        -- Define instruction for applying the command (either in the command itself,
+            or elsewhere)
+
+    c. interpreter
+        -- A component that processes structured text data. Does so by turning it into
+            lexical tokens (lexing) and then interpreting sequences of said tokens (parsing).
+        -- Barring simple cases, an interpreter acts in two stages
+        -- Lexing turns into a set of tokens, e.g.
+            2*(4+5) -> Lit[3] Star Lparen Lit[4] PLUS Lit[5] Rparen
+        -- Parsing tokens into meaningful constructs, e.g.
+            -> MultiplicationExpression [
+                    Integer[3],
+                    AdditionExpression [
+                        Integer[4],
+                        Integer[5]
+                    ]
+                ]
+
+    d. iterator
+        -- An iterator is a class that facilitates the traversal of a data structure
+            - Keeps a reference to the current object
+            - Knows how to move to a different element
+        -- The iterator protocol requires
+            - __iter__() to expose the iterator, which uses
+            - __next__() to return each of the iterated elements or
+            - raise StopIteration when it's done
+        -- An iterator specifies how you can traverse an object
+        -- Statefull iterators cannot be recursive
+        -- yield allows for much more succint iteration
+
+    e. mediator
+        -- Facilitates communication between components without them necessarility being aware of
+            each other or having direct (reference) access to each other.
+        -- Components may go in and out of a system at any time
+            - Chat room participants
+            - Players in an MMORPG
+        -- It makes no sense from them to have direct references to one another
+            - Those references may go dead
+        -- Solution: have them all refer to some central component that facilitates communication
+        -- Create the mediator and have each object in the system refer to it (in a property)
+        -- Mediator engages in bidirectional communication with its connected components
+        -- Mediator has functions the components cal call
+        -- Components have functions the mediator can call
+        -- Event processing libraries make communicaiton easier to implement
+
+    f. memento
+    g. observer
+    h. state
+    i. strategy
+    j. template-method
+    k. visitor
+
+SOLID Design Principles:
+-- SRP/SoC: Single Responsibility Principle / Separation of Concern --
+    A module should be responsible to one, and only one, actor.
+    Separate an application into distinct sections, or modules that
+    address separate concerns.
+    Don't overload your objects  too much.
+-- OCP: Open Closed Principle --
+    A class should be open for extension (extend by inheritance for example)
+    but close for modification.
+    (* Enterprise Pattern: Specification)
+-- LSP: Liskov Substitution Principle --
+    Objects of a superclass can be replaceable with objects of its subclasses
+    without altering the correctness of the program.
+-- ISP: Interface Segregation Principle --
+    Code should not be forced to use methods it does not need.
+    YAGNI: You ain't gonna need it
+-- DIP: Dependency Inversion Principle --
+    High-level modules should not import anything from low-level modules. Both
+    should depend on abstractions (e.g., interfaces).
+    Abstractions should not depend on details. Details (concrete
+    implementations) should depend on abstractions.
