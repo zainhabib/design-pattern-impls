@@ -172,6 +172,15 @@ Gang of Four design patterns
         -- Event processing libraries make communicaiton easier to implement
 
     f. memento
+        -- An object or system goes through changes. E.g. a bank account gets deposits and
+            withdrawals. There are different ways of navigating those changes. One way is to
+            record every change (Command) and teach a command to undo itself. Another is to simply
+            save snapshots of the system (Memento).
+        -- Memento ... A token/handle representing the system state. No functions of its own. Let's
+            roll back to the state when the token was generated. May or may not directly expose state
+            information.
+        -- Memento are used to roll back states arbitrarily
+        --
     g. observer
     h. state
     i. strategy
