@@ -193,6 +193,17 @@ Gang of Four design patterns
         -- Subscription and unsubscription handled with addition/removal of items in a list
         -- Property notifications are easy; dependent property notifications are tricky
     h. state
+        -- A pattern in which object's behavior is determined by its state. An object
+            transitions from one state to another (somthing needs to trigger a transition).
+        -- A formalized construct which manages state and transitions is called state machine.
+        -- Given sufficient complexity, it pays to formally define possible states and
+            events/ triggers.
+        -- We can define the
+            - State entry/exit behaviors
+            - Action when a particular event causes a transition
+            - Guard conditions enabling/disabling transition
+            - Default action when no transitions are found for an event
+        --
     i. strategy
     j. template-method
     k. visitor
