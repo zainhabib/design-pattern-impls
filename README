@@ -217,8 +217,19 @@ Gang of Four design patterns
             - Define the interface you expect each strategy to follow
             - Provide for dynamic composition of strategies in the resulting object
     j. template-method
+        -- A high-level blueprint for an algorithm to be completed by inheritors.
+        -- Algorithms can be decomposed into common parts + specifics.
+        -- Strategy pattern does this through composition
+        -- Template method does the same thing through inheritance
+            - Overall algorithm defines the base class; makes use of abstract members
+            - Inheritors overrides the abstract members
+            - Template method invoked to get work done
+        -- Allows us to define the 'skeleton' of the algorithm, with concrete
+            implementations defined in the subclasses.
+        -- Define an algorithm at a high level in parent class
+        -- Define constituent parts as abstract methods/properties
+        -- Inherit the algorithm class, providing necessary overrides
     k. visitor
-
 SOLID Design Principles:
 -- SRP/SoC: Single Responsibility Principle / Separation of Concern --
     A module should be responsible to one, and only one, actor.
