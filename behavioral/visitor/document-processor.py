@@ -4,6 +4,7 @@
 ##
 from abc import ABC, abstractmethod
 
+
 # Step 1: Define the Visitor Interface
 class Exporter(ABC):
     def export_paragraph(self, paragraph):
@@ -26,6 +27,8 @@ class HTMLExporter(Exporter):
 
     def export_image(self, image):
         return f'<img src="{image.source}" alt="{image.alt}">'
+
+
 class PDFExporter(Exporter):
     def export_paragraph(self, paragraph):
         return f"PDF Paragraph: {paragraph.content}"
@@ -103,6 +106,7 @@ def main():
     pdf_result = document.accept(pdf_exporter)
     print("PDF Export:")
     print('\n'.join(pdf_result))
+
 
 if __name__ == "__main__":
     main()
