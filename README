@@ -1,6 +1,3 @@
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
 Master Python Design Patterns: CodeTekTech on YouTube
 https://www.youtube.com/watch?v=mWaZD8uztT8
 
@@ -230,6 +227,15 @@ Gang of Four design patterns
         -- Define constituent parts as abstract methods/properties
         -- Inherit the algorithm class, providing necessary overrides
     k. visitor
+        -- Allows adding extra behaviors to entire hierarchies of classes.
+        -- Need to define a new operation on an entire class hierarchy
+            - E.g. make a document model printable to HTML/Markdown.
+        -- Do not want to keep modifying every class in the hierarchy.
+        -- Need access to the non-common aspects of classes in the hierarchy.
+        -- Create an external component to handle rendering
+            - But avoid explicit type checks
+        -- A component (visitor) that knows how to traverse a data structure
+            composed of (possibly related) types.
 SOLID Design Principles:
 -- SRP/SoC: Single Responsibility Principle / Separation of Concern --
     A module should be responsible to one, and only one, actor.
